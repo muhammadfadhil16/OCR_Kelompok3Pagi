@@ -1,36 +1,41 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1 class="text-2xl font-bold mb-6">Edit Data</h1>
-<form method="POST" action="/edit/{{ result.id }}" enctype="multipart/form-data" class="space-y-6">
-    <!-- Pilih File -->
-    <div>
-        <label for="file" class="block text-sm font-medium text-gray-700">Pilih File (Opsional)</label>
-        <input type="file" name="image" id="file" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
-    </div>
-
-    <!-- Frame (1): Preview Gambar -->
-    <div>
-        <label for="frame1" class="block text-sm font-medium text-gray-700">Preview Gambar</label>
-        <div id="frame1" class="mt-1 border border-gray-300 rounded-md p-3 bg-gray-50">
-            <img src="{{ url_for('static', filename='uploads/' + result.image_filename) }}" alt="Preview Gambar" class="w-48 h-auto rounded-md">
+<div class="max-w-4xl mx-auto bg-white border-7 border-gray-300 rounded-xl shadow-lg p-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Edit Data</h1>
+    <form method="POST" action="/edit/{{ result.id }}" enctype="multipart/form-data" class="space-y-6">
+        <!-- Pilih File -->
+        <div>
+            <label for="file" class="block text-lg font-medium text-gray-700">Pilih File (Opsional)</label>
+            <input type="file" name="image" id="file" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-base">
         </div>
-    </div>
 
-    <!-- Frame (2): Hasil Ekstraksi -->
-    <div>
-        <label for="frame2" class="block text-sm font-medium text-gray-700">Hasil Ekstraksi</label>
-        <textarea id="frame2" name="text" rows="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">{{ result.extracted_text }}</textarea>
-    </div>
+        <!-- Frame (1): Preview Gambar -->
+        <div>
+            <label for="frame1" class="block text-lg font-medium text-gray-700">Preview Gambar</label>
+            <div id="frame1" class="mt-2 border-2 border-gray-300 rounded-lg p-4 bg-gray-50">
+                <img src="{{ url_for('static', filename='uploads/' + result.image_filename) }}" alt="Preview Gambar" class="max-w-full h-auto rounded-lg">
+            </div>
+        </div>
 
-    <!-- Tombol Aksi -->
-    <div class="flex items-center justify-between">
-        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400">
-            Ubah
-        </button>
-        <a href="/" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
-            Batal
-        </a>
-    </div>
-</form>
+        <!-- Frame (2): Hasil Ekstraksi -->
+        <div>
+            <label for="frame2" class="block text-lg font-medium text-gray-700">Hasil Ekstraksi</label>
+            <textarea id="frame2" name="text" rows="8" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-base">{{ result.extracted_text }}</textarea>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="flex items-center justify-between">
+            <button type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-lg text-lg font-medium rounded-lg text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                  </svg>
+                Ubah
+            </button>
+            <a href="/" class="inline-flex justify-center py-3 px-6 border border-gray-300 shadow-lg text-lg font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                Batal
+            </a>
+        </div>
+    </form>
+</div>
 {% endblock %}

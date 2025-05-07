@@ -1,42 +1,47 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<h1 class="text-2xl font-bold text-red-600 mb-4">Hapus Data</h1>
-<p class="text-gray-600 mb-6">Apakah Anda yakin ingin menghapus data berikut?</p>
+<div class="max-w-2xl mx-auto bg-white border-4 border-gray-300 rounded-xl shadow-lg p-8">
+    <h1 class="text-3xl font-bold text-red-600 mb-6 text-center">Hapus Data</h1>
+    <p class="text-gray-600 mb-8 text-center">Apakah Anda yakin ingin menghapus data berikut?</p>
 
-<form method="POST" action="/delete/{{ result.id }}" class="space-y-6">
-    <!-- Nama File -->
-    <div>
-        <label for="image_filename" class="block text-sm font-medium text-gray-700">Nama File:</label>
-        <input type="text" id="image_filename" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" value="{{ result.image_filename }}" readonly>
-    </div>
+    <form method="POST" action="/delete/{{ result.id }}" class="space-y-6">
+        <!-- Nama File -->
+        <div>
+            <label for="image_filename" class="block text-lg font-medium text-gray-700">Nama File:</label>
+            <input type="text" id="image_filename" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-base" value="{{ result.image_filename }}" readonly>
+        </div>
 
-    <!-- Lokasi File -->
-    <div>
-        <label for="file_location" class="block text-sm font-medium text-gray-700">Lokasi File:</label>
-        <input type="text" id="file_location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" value="{{ url_for('static', filename='uploads/' + result.image_filename) }}" readonly>
-    </div>
+        <!-- Lokasi File -->
+        <div>
+            <label for="file_location" class="block text-lg font-medium text-gray-700">Lokasi File:</label>
+            <input type="text" id="file_location" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-base" value="{{ url_for('static', filename='uploads/' + result.image_filename) }}" readonly>
+        </div>
 
-    <!-- Tanggal Input -->
-    <div>
-        <label for="date_created" class="block text-sm font-medium text-gray-700">Tanggal Input:</label>
-        <input type="text" id="date_created" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" value="{{ result.date_created }}" readonly>
-    </div>
+        <!-- Tanggal Input -->
+        <div>
+            <label for="date_created" class="block text-lg font-medium text-gray-700">Tanggal Input:</label>
+            <input type="text" id="date_created" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-base" value="{{ result.date_created }}" readonly>
+        </div>
 
-    <!-- Hasil Ekstraksi -->
-    <div>
-        <label for="extracted_text" class="block text-sm font-medium text-gray-700">Hasil Ekstraksi:</label>
-        <textarea id="extracted_text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" rows="5" readonly>{{ result.extracted_text }}</textarea>
-    </div>
+        <!-- Hasil Ekstraksi -->
+        <div>
+            <label for="extracted_text" class="block text-lg font-medium text-gray-700">Hasil Ekstraksi:</label>
+            <textarea id="extracted_text" class="mt-2 block w-full rounded-lg border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-base" rows="8" readonly>{{ result.extracted_text }}</textarea>
+        </div>
 
-    <!-- Tombol Aksi -->
-    <div class="flex items-center justify-between">
-        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-            Hapus
-        </button>
-        <a href="/" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
-            Batal
-        </a>
-    </div>
-</form>
+        <!-- Tombol Aksi -->
+        <div class="flex items-center justify-center gap-4">
+            <button type="submit" class="inline-flex items-center justify-center py-3 px-6 border border-transparent shadow-lg text-lg font-medium rounded-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                  </svg>                 
+                Hapus
+            </button>
+            <a href="/" class="inline-flex items-center justify-center py-3 px-6 border border-gray-300 shadow-lg text-lg font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+                 Batal
+            </a>
+        </div>
+    </form>
+</div>
 {% endblock %}
