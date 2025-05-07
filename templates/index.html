@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">Daftar Data OCR</h1>
+<a href="/create" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-4 inline-block">Tambah Data</a>
+
+<div class="overflow-x-auto bg-white shadow-md rounded-lg">
+    <table class="min-w-full table-auto text-left border-collapse border border-gray-200">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700">No</th>
+                <th class="border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700">Nama File</th>
+                <th class="border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700">Lokasi File</th>
+                <th class="border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700">Tanggal Input</th>
+                <th class="border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700">Hasil Ekstraksi</th>
+                <th class="border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+            <tr class="hover:bg-gray-50">
+                <td class="border border-gray-200 px-4 py-2 text-sm text-gray-600">{{ loop.index }}</td>
+                <td class="border border-gray-200 px-4 py-2 text-sm text-gray-600">{{ result.image_filename }}</td>
+                <td class="border border-gray-200 px-4 py-2 text-sm text-gray-600">
+                    <a href="{{ url_for('static', filename='uploads/' + result.image_filename) }}" class="text-blue-500 hover:underline">
+                        {{ url_for('static', filename='uploads/' + result.image_filename) }}
+                    </a>
+                </td>
+                <td class="border border-gray-200 px-4 py-2 text-sm text-gray-600">{{ result.date_created }}</td>
+                <td class="border border-gray-200 px-4 py-2 text-sm text-gray-600 truncate max-w-xs">{{ result.extracted_text }}</td>
+                <td class="border border-gray-200 px-4 py-2 text-sm text-gray-600">
+                    <a href="/edit/{{ result.id }}" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">Edit</a>
+                    <a href="/delete/{{ result.id }}" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

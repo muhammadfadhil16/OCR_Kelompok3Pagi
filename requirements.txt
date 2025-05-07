@@ -1,0 +1,6 @@
+Flask
+Flask-SQLAlchemy
+pytesseract
+datetime
+pillow
+PyMySQL

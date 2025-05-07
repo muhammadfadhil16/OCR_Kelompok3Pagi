@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-red-600 mb-4">Hapus Data</h1>
+<p class="text-gray-600 mb-6">Apakah Anda yakin ingin menghapus data berikut?</p>
+
+<form method="POST" action="/delete/{{ result.id }}" class="space-y-6">
+    <!-- Nama File -->
+    <div>
+        <label for="image_filename" class="block text-sm font-medium text-gray-700">Nama File:</label>
+        <input type="text" id="image_filename" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" value="{{ result.image_filename }}" readonly>
+    </div>
+
+    <!-- Lokasi File -->
+    <div>
+        <label for="file_location" class="block text-sm font-medium text-gray-700">Lokasi File:</label>
+        <input type="text" id="file_location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" value="{{ url_for('static', filename='uploads/' + result.image_filename) }}" readonly>
+    </div>
+
+    <!-- Tanggal Input -->
+    <div>
+        <label for="date_created" class="block text-sm font-medium text-gray-700">Tanggal Input:</label>
+        <input type="text" id="date_created" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" value="{{ result.date_created }}" readonly>
+    </div>
+
+    <!-- Hasil Ekstraksi -->
+    <div>
+        <label for="extracted_text" class="block text-sm font-medium text-gray-700">Hasil Ekstraksi:</label>
+        <textarea id="extracted_text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100 focus:ring-0 focus:border-gray-300 sm:text-sm" rows="5" readonly>{{ result.extracted_text }}</textarea>
+    </div>
+
+    <!-- Tombol Aksi -->
+    <div class="flex items-center justify-between">
+        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+            Hapus
+        </button>
+        <a href="/" class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300">
+            Batal
+        </a>
+    </div>
+</form>
+{% endblock %}
