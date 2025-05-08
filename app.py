@@ -1,4 +1,4 @@
-# app.py
+# modularitas
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_migrate import Migrate
@@ -41,6 +41,7 @@ def upload():
 
     return redirect(url_for('index'))
 
+#Enkapsulasi
 @app.route('/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
@@ -114,6 +115,7 @@ def extract_text():
     if file.filename == '':
         return {'error': 'No file selected'}, 400
 
+#Penerapan Abstraksi
     try:
         # Simpan file sementara
         filename = secure_filename(file.filename)

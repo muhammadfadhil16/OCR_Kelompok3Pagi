@@ -4,7 +4,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
-class OCRResult(db.Model):
+class OCRResult(db.Model): # Inheritance dari db.Model
     id = db.Column(db.Integer, primary_key=True)
     image_filename = db.Column(db.String(100), nullable=False)
     extracted_text = db.Column(db.Text, nullable=False)
